@@ -1,0 +1,9 @@
+# Project exclude paths
+/.gradle/
+/Account Service (Java)/task/build/
+/Account Service (Java)/task/out/
+/Account Service (Java)/task/out/production/classes/
+/Topics/Inner classes/Improve your vehicle/out/
+/Topics/Inner classes/Improve your vehicle/out/production/classes/
+/Topics/Inner classes/New Inner class/out/
+/Topics/Inner classes/New Inner class/out/production/classes/

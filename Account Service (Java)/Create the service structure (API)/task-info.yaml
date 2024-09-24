@@ -1,0 +1,41 @@
+type: edu
+files:
+  - name: src/account/AccountServiceApplication.java
+    visible: true
+    learner_created: false
+  - name: src/resources/application.properties
+    visible: true
+    learner_created: false
+  - name: test/AccountServiceTest.java
+    visible: false
+    learner_created: false
+  - name: build.gradle
+    visible: true
+    learner_created: false
+  - name: src/account/AccountController.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserResponse.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserRequest.java
+    visible: true
+    learner_created: true
+  - name: src/account/User.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserRepository.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserAlreadyExistsException.java
+    visible: true
+    learner_created: true
+  - name: src/account/WrongEmailException.java
+    visible: true
+    learner_created: true
+feedback_link: https://hyperskill.org/learn/step/16601#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Mon, 23 Sep 2024 08:36:27 UTC"
+record: 1
