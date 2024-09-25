@@ -4,10 +4,12 @@ package account;
 import jakarta.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-//import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,6 +18,8 @@ public class AccountController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @PostMapping ("/auth/signup")
@@ -26,12 +30,12 @@ public class AccountController {
             throw new WrongEmailException();
         }
         if(userRepository.existsByEmailIgnoreCase(userRequest.email())){
-            throw new UserAlreadyExistsException("User exists!");
+            throw new UserAlreadyExistsException("User exist!");
         }
         User user = new User();
         user.setName(userRequest.name());
         user.setLastname(userRequest.lastname());
-        user.setPassword(userRequest.password());
+        user.setPassword(passwordEncoder.encode(userRequest.password()));
         user.setEmail(userRequest.email());
         user = userRepository.save(user);
         return new UserResponse(user.getId(), user.getName(),user.getLastname(), user.getEmail());
@@ -39,20 +43,16 @@ public class AccountController {
 
     @GetMapping("/empl/payment")
     @ResponseStatus(HttpStatus.OK)
-    UserResponse UserGetsPayment(@RequestBody UserLoggingRequest userLoggingRequest) throws UserIsNotAuthenticated {
+    UserResponse UserGetsPayment() throws UserIsNotAuthenticated {
 
-        if(!userRepository.existsByEmailIgnoreCase(userLoggingRequest.email()) && !userRepository.existsByPassword(userLoggingRequest.password())){
+        AppAuthentication authentication = (AppAuthentication) SecurityContextHolder.getContext().getAuthentication();
+
+//         authentication instanceof AnonymousAuthenticationToken
+        if(authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal() == null){
             throw new UserIsNotAuthenticated("");
         }
-        User user = new User();
-        return new UserResponse(user.getId(), user.getName(),user.getLastname(), user.getEmail());
-
-//        AppAuthentication authentication = (AppAuthentication) SecurityContextHolder.getContext().getAuthentication();
-//
-//        if(!authentication.isAuthenticated()){
-//            throw new UserIsNotAuthenticated();
-//        }
-
+        User user = (User) authentication.getPrincipal();
+        return new UserResponse(user.getId(),user.getName(),user.getLastname(),user.getEmail());
 
     }
 
@@ -62,10 +62,11 @@ public class AccountController {
     void wrongEmailException(WrongEmailException ex) {
     }
 
-    @ExceptionHandler(UserAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    void userAlreadyExistsException(UserAlreadyExistsException ex) {
-    }
+//    @ExceptionHandler(UserAlreadyExistsException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    MyErrorResponse userAlreadyExistsException(UserAlreadyExistsException ex) {
+//        return new MyErrorResponse(ex.getMessage());
+//    }
 
     @ExceptionHandler(UserIsNotAuthenticated.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

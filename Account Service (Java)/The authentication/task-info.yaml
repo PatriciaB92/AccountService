@@ -51,22 +51,17 @@ files:
   - name: src/account/UserLoggingRequest.java
     visible: true
     learner_created: true
+  - name: src/account/MyErrorResponse.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/16602#comment
 status: Failed
 feedback:
-  message: "Exception in test #1\n\nCannot start Spring application\n\norg.springframework.context.ApplicationContextException:\
-    \ Failed to start bean &#39;webServerStartStop&#39;\n\tat org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181)\n\
-    \tat org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)\n\
-    \tat java.base/java.lang.Iterable.forEach(Iterable.java:75)\n\tat org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)\n\
-    \tat org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)\n\
-    \tat org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:932)\n\
-    \tat org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:587)\n\
-    \tat org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)\n\
-    \tat org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)\n\
-    \tat org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:432)\n\
-    \tat org.springframework.boot.SpringApplication.run(SpringApplication.java:308)\n\
-    \tat org.springframework.boot.SpringApplication.run(SpringApplication.java:1302)\n\
-    \tat org.springframework.boot.SpringApplication.run(SpringApplication.java:1291)\n\
-    \tat account.AccountServiceApplication.main(AccountServiceApplication.java:10)"
-  time: "Tue, 24 Sep 2024 14:12:10 UTC"
+  message: |-
+    Wrong answer in test #18
+
+    Get /api/empl/payment should respond with status code 200, responded: 500
+    User must login!
+    Authentication with johndoe@acme.com / secret
+  time: "Wed, 25 Sep 2024 11:26:28 UTC"
 record: -1
