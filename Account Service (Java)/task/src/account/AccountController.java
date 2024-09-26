@@ -43,12 +43,13 @@ public class AccountController {
 
     @GetMapping("/empl/payment")
     @ResponseStatus(HttpStatus.OK)
-    UserResponse UserGetsPayment() throws UserIsNotAuthenticated {
+    UserResponse UserGetsPayment(@AuthenticationPrincipal UserDetails userDetails) throws UserIsNotAuthenticated {
 
         AppAuthentication authentication = (AppAuthentication) SecurityContextHolder.getContext().getAuthentication();
 
 //         authentication instanceof AnonymousAuthenticationToken
-        if(authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal() == null){
+        if(authentication == null || !authentication.isAuthenticated() || userDetails.getAuthorities() == null){
+            //authentication.getPrincipal()
             throw new UserIsNotAuthenticated("");
         }
         User user = (User) authentication.getPrincipal();
