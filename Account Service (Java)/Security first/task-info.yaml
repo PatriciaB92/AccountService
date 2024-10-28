@@ -13,6 +13,48 @@ files:
   - name: test/AccountServiceTest.java
     visible: false
     learner_created: false
+  - name: src/account/AppAuthentication.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserResponse.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserIsNotAuthenticated.java
+    visible: true
+    learner_created: true
+  - name: src/account/WrongEmailException.java
+    visible: true
+    learner_created: true
+  - name: src/account/MyErrorResponse.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserLoggingRequest.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserAlreadyExistsException.java
+    visible: true
+    learner_created: true
+  - name: src/account/SecurityConfiguration.java
+    visible: true
+    learner_created: true
+  - name: src/account/User.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserRequest.java
+    visible: true
+    learner_created: true
+  - name: src/account/OurUserDetailsService.java
+    visible: true
+    learner_created: true
+  - name: src/account/AccountController.java
+    visible: true
+    learner_created: true
+  - name: src/account/UserRepository.java
+    visible: true
+    learner_created: true
+  - name: src/account/RestAuthenticationEntryPoint.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/16603#comment
 status: Unchecked
 record: -1

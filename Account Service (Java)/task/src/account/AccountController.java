@@ -45,19 +45,17 @@ public class AccountController {
     @ResponseStatus(HttpStatus.OK)
     UserResponse UserGetsPayment(@AuthenticationPrincipal UserDetails userDetails) throws UserIsNotAuthenticated {
 
-        User user = new User();
-
-        AppAuthentication authentication = (AppAuthentication) SecurityContextHolder.getContext().getAuthentication();
-
-//         authentication instanceof AnonymousAuthenticationToken
-//        || userDetails.getAuthorities() == null
-        //authentication.getPrincipal()
-        if(!authentication.isAuthenticated()){
-            throw new UserIsNotAuthenticated("");
-        }
-//        User user = (User) authentication.getPrincipal();
-        UserRepository userRepository = (UserRepository) authentication.getPrincipal();
-        return new UserResponse(authentication.getDetails(user.getId()), authentication.getCredentials(),  );
+//        AppAuthentication authentication = (AppAuthentication) SecurityContextHolder.getContext().getAuthentication();
+//
+////         authentication instanceof AnonymousAuthenticationToken
+////        || userDetails.getAuthorities() == null
+//        //authentication.getPrincipal()
+//        if(!authentication.isAuthenticated()){
+//            throw new UserIsNotAuthenticated("");
+//        }
+////        User user = (User) authentication.getPrincipal();
+        User user = userRepository.findByEmailIgnoreCase(userDetails.getUsername());
+        return new UserResponse(user.getId(), user.getName(), user.getLastname(), user.getEmail());
 //        return new UserResponse(userRepository.findById(),user.getName(),user.getLastname(),);
 //        userDetails.getUsername()
 

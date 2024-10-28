@@ -55,13 +55,8 @@ files:
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/16602#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #18
-
-    Get /api/empl/payment should respond with status code 200, responded: 500
-    User must login!
-    Authentication with johndoe@acme.com / secret
-  time: "Thu, 26 Sep 2024 11:53:31 UTC"
-record: -1
+  message: Congratulations!
+  time: "Wed, 09 Oct 2024 07:07:09 UTC"
+record: 2
